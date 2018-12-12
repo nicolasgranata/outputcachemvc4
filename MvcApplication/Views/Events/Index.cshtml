@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MvcApplication.Models.Event>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="https://cdn.datatables.net/1.9.4/css/jquery.dataTables.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Events</h1>
+    <table id="eventsTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Technology</th>
+                <th>Starting Date</th>
+                <th>Registration Link</th>
+            </tr>
+        </thead>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js"
+            integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.9.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#eventsTable').dataTable({
+                "bProcessing": true,
+                "bServerSide": true,
+                "sAjaxSource": "/Events/GetEvents",
+                "aoColumns": [
+                    { "mData": "Title" },
+                    { "mData": "Technology" },
+                    { "mData": "StartingDate" },
+                    { "mData": "RegistrationLink" }
+                ]
+            })
+        });
+    </script>
+</body>
+</html>
+
+
+
+
